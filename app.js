@@ -4,9 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var LY = require('lvyii-engine')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+
+LY.init({
+  appId: 'iGEMpxRGbsrvy2lqrfPd8pzxOIgQqCZ1',
+  appKey: 'ephuZgXirf1YOpeimnjlsdQT3OFNnpZy'
+})
 
 var app = express();
 
@@ -21,6 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(LY.express())
 
 app.use('/', index);
 app.use('/users', users);
