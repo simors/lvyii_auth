@@ -13,7 +13,7 @@ function getUserById(userId) {
   if (userId === '123') {
     return userInfo
   } else {
-    return undefined
+    throw new LYAUTH.Error('Can not find user', {code: 110})
   }
 }
 
@@ -29,7 +29,7 @@ function loginWithUsername(username, password) {
   if (username === 'yang' && password === '321456') {
     return userInfo
   } else {
-    return undefined
+    throw new LYAUTH.Error('login with username error', {code: 100})
   }
 }
 

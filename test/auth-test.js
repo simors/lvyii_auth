@@ -38,4 +38,54 @@ describe('auth', function() {
       });
   });
   
+  it('username_login', function (done) {
+    request(app)
+      .post('/1/users/loginWithUsername')
+      .send({username: 'yang', password: '321456'})
+      .expect(200, function (err, res) {
+        var result = res.body
+        result.id.should.be.equal('123')
+        done(err);
+      });
+  });
+  
+  it('username_login_error', function (done) {
+    request(app)
+      .post('/1/users/loginWithUsername')
+      .send({username: 'yang', password: '21456'})
+      .expect(400, function (err, res) {
+        done(err);
+      });
+  });
+  
+  it('user_token', function (done) {
+    request(app)
+      .post('/1/users/me')
+      .send({sessionToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMyIsImlhdCI6MTUxNTE1NjA3OX0.w-kmCMGh4ifoZzXFVIMV2-0GsNf8dhOOFBEynxecTUg'})
+      .expect(200, function (err, res) {
+        var result = res.body
+        done(err)
+      });
+  });
+  
+  it('user_token_invalid', function (done) {
+    request(app)
+      .post('/1/users/me')
+      .send({sessionToken: 'yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMyIsImlhdCI6MTUxNTE1NjA3OX0.w-kmCMGh4ifoZzXFVIMV2-0GsNf8dhOOFBEynxecTUg'})
+      .expect(400, function (err, res) {
+        var result = res.body
+        done(err)
+      });
+  });
+  
+  it('user_token_notfound', function (done) {
+    request(app)
+      .post('/1/users/me')
+      .send({sessionToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzEyMyIsImlhdCI6MTUxNTE1NzkzNH0.UZwv-N8TqHX8clWuIYFW5oSQ9GosQS4Po9HlVc2LI-w'})
+      .expect(400, function (err, res) {
+        var result = res.body
+        done(err)
+      });
+  });
+  
 });
