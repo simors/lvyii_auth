@@ -33,10 +33,40 @@ function loginWithUsername(username, password) {
   }
 }
 
+function signUpWithUsername(username, password) {
+  if (password === '123456') {
+    let user = {
+      id: '123',
+      username: username ,
+      password: password ,
+    }
+    return user
+  } else {
+    throw new LYAUTH.Error('login with username error', {code: 100})
+  }
+}
+
+function signUpWithMobilePhone(mobilePhone, smsCode, password) {
+  if (mobilePhone === '13888888888' && smsCode === '123456') {
+    let user = {
+      id: '123',
+      mobilePhone: '13888888888',
+      password: password,
+    }
+    return user
+  } else {
+    throw new LYAUTH.Error('sign up with mobilePhone error', {code: 101})
+  }
+}
+
 const callbackFuncs = {
   getUserById: getUserById,
   loginWithMobilephone: loginWithMobilephone,
-  loginWithUsername: loginWithUsername
+  loginWithUsername: loginWithUsername,
+  signUpWithMobilePhone: signUpWithMobilePhone,
+  signUpWithUsername: signUpWithUsername
+
+
 }
 
 module.exports = callbackFuncs

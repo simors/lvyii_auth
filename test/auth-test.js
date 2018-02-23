@@ -57,6 +57,46 @@ describe('auth', function() {
         done(err);
       });
   });
+
+  it('mobile_sign', function (done) {
+    request(app)
+      .post('/1/users/signUpWithMobilephone')
+      .send({mobilephone: '13888888888', smsCode: '123456'})
+      .expect(200, function (err, res) {
+        var result = res.body
+        result.id.should.be.equal('123')
+        done(err);
+      });
+  });
+
+  it('mobile_sign_error', function (done) {
+    request(app)
+      .post('/1/users/signUpWithMobilephone')
+      .send({mobilephone: '13587369299', smsCode: '21456'})
+      .expect(400, function (err, res) {
+        done(err);
+      });
+  });
+
+  it('username_sign', function (done) {
+    request(app)
+      .post('/1/users/signUpWithUsername')
+      .send({username: 'yang', password: '123456'})
+      .expect(200, function (err, res) {
+        var result = res.body
+        result.id.should.be.equal('123')
+        done(err);
+      });
+  });
+
+  it('username_sign_error', function (done) {
+    request(app)
+      .post('/1/users/signUpWithUsername')
+      .send({username: 'yang', password: '21456'})
+      .expect(400, function (err, res) {
+        done(err);
+      });
+  });
   
   it('user_token', function (done) {
     request(app)
