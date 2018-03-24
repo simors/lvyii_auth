@@ -1,6 +1,6 @@
 {
   "name": "lvyii_auth",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Auth for Lvyii",
   "main": "index.js",
   "scripts": {
