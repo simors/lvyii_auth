@@ -1,6 +1,6 @@
 {
   "name": "lvyii_auth",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Auth for Lvyii",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "body-parser": "^1.18.2",
     "connect": "^3.6.5",
     "connect-timeout": "^1.9.0",
+    "crypto": "^1.0.1",
     "debug": "^3.1.0",
     "jsonwebtoken": "^8.1.0",
     "lvyii_cors_headers": "^0.0.5",
