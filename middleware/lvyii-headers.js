@@ -1,6 +1,6 @@
 var crypto = require('crypto');
 
-module.exports = function(LY) {
+module.exports = function(LYAUTH) {
   return function(options) {
     options = options || {};
 
@@ -25,7 +25,7 @@ module.exports = function(LY) {
         if (prodValue === 0 || prodValue === false) {
           prod = 0;
         }
-        req.LY = {
+        req.LYAUTH = {
           id: appId,
           key: appKey,
           prod: prod,
@@ -41,7 +41,7 @@ module.exports = function(LY) {
           prod = 0;
         }
         req.sessionToken = sessionToken;
-        req.LY = {
+        req.LYAUTH = {
           id: appId,
           key: appKey,
           prod: prod,
